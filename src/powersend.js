@@ -9,10 +9,10 @@ function PowerSend(picker) {
 PowerSend.prototype.sendTextMessage = function (session, message) {
     session.sendTyping();
     return new Promise(resolve => {
-        setTimeout(function () {
+        setTimeout(() => {
             var args = Array.prototype.slice.call(arguments);
             args = args.splice(1);
-            session.send.apply(null, args);
+            session.send.apply(session, args);
             resolve();
         }, 1000);
     });
@@ -26,11 +26,11 @@ PowerSend.prototype.sendTextMessage = function (session, message) {
 PowerSend.prototype.sendTextMessageByType = function (session, category) {
     session.sendTyping();
     return new Promise(resolve => {
-        setTimeout(function () {
+        setTimeout(() => {
             var args = Array.prototype.slice.call(arguments);
             args = args.splice(2);
             args.unshift(this.picker.pickMessage(category));
-            session.send.apply(null, args);
+            session.send.apply(session, args);
             resolve();
         }, 1000);
     });

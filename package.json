@@ -1,5 +1,5 @@
 {
-  "name": "mbf_powersend",
+  "name": "mbf-powersend",
   "version": "0.1.0",
   "description": "Extended functionalities for Microsoft Bot Framework Messages by the awesome Helvia Team",
   "main": "index.js",
