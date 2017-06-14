@@ -12,4 +12,14 @@ PowerSend.prototype.sendTextMessage = function (session, message) {
     session.send.apply(null, args);
 }
 
+/**
+ * Send a category  message. Message is delayed and typings indicator is stent.
+ */
+PowerSend.prototype.sendTextMessageByType = function (session, category) {
+    var args = Array.prototype.slice.call(arguments);
+    args = args.splice(2);
+    args.unshift(this.picker.pickMessage(category));
+    session.send.apply(null, args);
+}
+
 module.exports = PowerSend;

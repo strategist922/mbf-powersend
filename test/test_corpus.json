@@ -1,3 +1,4 @@
 {
-    "HELLO": ["Greetings", "Hello", "Bye"]
+    "HELLO": ["Greetings", "Hello", "Bye"],
+    "HELLO_NAME": ["Hello %s!"]
 }
