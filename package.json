@@ -1,12 +1,12 @@
 {
-  "name": "helvia_mbf_powersend",
-  "version": "1.0.0",
-  "description": "",
+  "name": "mbf_powersend",
+  "version": "0.1.0",
+  "description": "Extended functionalities for Microsoft Bot Framework Messages by the awesome Helvia Team",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["bot", "internal"],
+  "author": "Helvia 2017",
   "license": "ISC"
 }
