@@ -12,7 +12,10 @@ describe('PowerSend', function () {
     // Create a fake session
     var Session = (function () {
         var result = "";
+        var typed =  false;
         return {
+            sendTyping: function () { this.typed = true; },
+            reset: function() { this.typed = false; },
             send: function () {
                 var args = Array.prototype.slice.call(arguments);
                 result = util.format.apply(null, args);
@@ -20,6 +23,9 @@ describe('PowerSend', function () {
             },
             value: function () {
                 return result;
+            },
+            isTyped: function() {
+                return typed;
             }
         };
     })();
@@ -27,21 +33,33 @@ describe('PowerSend', function () {
     describe('#sendTextMessage', function () {
 
         it('should write "Hello World"', function () {
-            PS.sendTextMessage(Session, "Hello %s", "World");
-            assert.equal("Hello World", Session.value());
+            Session.reset();
+            PS.sendTextMessage(Session, "Hello %s", "World").then(() => {
+                assert.equal("Hello World", Session.value());
+                assert.equal(true, Session.isTyped);
+                done();
+            }).catch(err => done(err));
         });
 
         it('should write "Hello Dave, we have 10 apples."', function () {
-            PS.sendTextMessage(Session, "Hello %s, we have %d apples.", "Dave", 10);
-            assert.equal("Hello Dave, we have 10 apples.", Session.value());
+            Session.reset();
+            PS.sendTextMessage(Session, "Hello %s, we have %d apples.", "Dave", 10).then(() => {
+                assert.equal("Hello Dave, we have 10 apples.", Session.value());
+                assert.equal(true, Session.isTyped);
+                done();
+            }).catch(err => done(err));
         });
     });
 
     describe('#sendTextMessageByType', function () {
 
         it('should write "Hello Dave!"', function () {
-            PS.sendTextMessageByType(Session, "HELLO_NAME", "Dave");
-            assert.equal("Hello Dave!", Session.value());
+            Session.reset();
+            PS.sendTextMessageByType(Session, "HELLO_NAME", "Dave").then(() => {
+                assert.equal("Hello Dave!", Session.value());
+                assert.equal(true, Session.isTyped);
+                done();
+            }).catch(err => done(err));
         });
     });
 });

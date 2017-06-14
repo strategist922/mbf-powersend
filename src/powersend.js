@@ -7,19 +7,33 @@ function PowerSend(picker) {
  * Send a specific message. Message is delayed and typings indicator is stent.
  */
 PowerSend.prototype.sendTextMessage = function (session, message) {
-    var args = Array.prototype.slice.call(arguments);
-    args = args.splice(1);
-    session.send.apply(null, args);
+    session.sendTyping();
+    return new Promise(resolve => {
+        setTimeout(function () {
+            var args = Array.prototype.slice.call(arguments);
+            args = args.splice(1);
+            session.send.apply(null, args);
+            resolve();
+        }, 1000);
+    });
+
 }
+
 
 /**
  * Send a category  message. Message is delayed and typings indicator is stent.
  */
 PowerSend.prototype.sendTextMessageByType = function (session, category) {
-    var args = Array.prototype.slice.call(arguments);
-    args = args.splice(2);
-    args.unshift(this.picker.pickMessage(category));
-    session.send.apply(null, args);
+    session.sendTyping();
+    return new Promise(resolve => {
+        setTimeout(function () {
+            var args = Array.prototype.slice.call(arguments);
+            args = args.splice(2);
+            args.unshift(this.picker.pickMessage(category));
+            session.send.apply(null, args);
+            resolve();
+        }, 1000);
+    });
 }
 
 module.exports = PowerSend;
