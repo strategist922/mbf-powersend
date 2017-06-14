@@ -6,7 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["bot", "internal"],
+  "keywords": [
+    "bot",
+    "internal"
+  ],
   "author": "Helvia 2017",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^3.4.2"
+  }
 }
