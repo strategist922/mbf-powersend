@@ -9,8 +9,14 @@ MessagePicker.prototype.getMessage = function getMessage(category, id) {
 }
 
 MessagePicker.prototype.pickMessage = function pickMessage(category) {
-    let i = Math.floor(Math.random() * this.message_corpus[category].length)
-    return this.message_corpus[category][i];
+    let messages;
+    if( typeof category === 'string' ) {
+        messages = this.message_corpus[category]
+    } else {
+        messages = category;
+    }
+    let i = Math.floor(Math.random() * messages.length)
+    return this.messages[i];
 }
 
 module.exports = MessagePicker;

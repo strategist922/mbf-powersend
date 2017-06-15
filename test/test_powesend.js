@@ -51,11 +51,20 @@ describe('PowerSend', function () {
         });
     });
 
-    describe('#sendTextMessageByType', function () {
+    describe('#sendAnyTextMessage', function () {
 
-        it('should write "Hello Dave!"', function () {
+        it('should write "Hello Dave! (with category)"', function () {
             Session.reset();
-            PS.sendTextMessageByType(Session, "HELLO_NAME", "Dave").then(() => {
+            PS.sendAnyTextMessage(Session, "HELLO_NAME", "Dave").then(() => {
+                assert.equal("Hello Dave!", Session.value());
+                assert.equal(true, Session.isTyped);
+                done();
+            }).catch(err => done(err));
+        });
+
+        it('should write "Hello Dave!" (with array of answers)', function () {
+            Session.reset();
+            PS.sendAnyTextMessage(Session, ["Hello $s!"], "Dave").then(() => {
                 assert.equal("Hello Dave!", Session.value());
                 assert.equal(true, Session.isTyped);
                 done();
