@@ -31,6 +31,11 @@ sender.sendTextMessage(session, 'Hello %s! How are you?', user_name);
 
 ```js
 // Send a random `INTRO` sentence.
-let user_name = "Dave";
-sender.sendTextMessage(session, 'INTRO');
+sender.sendAnyTextMessage(session, 'INTRO');
+```
+
+### Send a random message from a list of sentences.
+
+```js
+sender.sendAnyTextMessage(session, ["Hello!", "Greetings!"]);
 ```
