@@ -16,7 +16,7 @@ MessagePicker.prototype.pickMessage = function pickMessage(category) {
         messages = category;
     }
     let i = Math.floor(Math.random() * messages.length)
-    return this.messages[i];
+    return messages[i];
 }
 
 module.exports = MessagePicker;
