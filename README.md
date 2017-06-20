@@ -12,12 +12,19 @@ let picker = new PowerSend.MessagePicker('./corpus.json');
 let sender = new PowerSend.PowerSend(picker);
 ``` 
 
-### Select a random message from the speech database
+### Select a Message
+
+#### Select a random message from the speech database
 
 ```js
-// Select a random `INTRO` sentence.
-picker.pickMessage('INTRO')
+// This function selects a random `INTRO` sentence and returns it as a string.
+let message = picker.pickMessage('INTRO'); 
 ```
+
+### Send a Message
+
+All the following functions send a message using the default bot framework `send` function. 
+In addition, they add the typings effect before sending the message.
 
 ### Send a message with typings
 
@@ -27,15 +34,20 @@ let user_name = "Dave";
 sender.sendTextMessage(session, 'Hello %s! How are you?', user_name);
 ```
 
+### Send a random message from a list of sentences.
+
+```js
+sender.sendAnyTextMessage(session, ["Hello!", "Greetings!"]);
+// or
+sender.sendAnyTextMessage(session, ["Hello %s!", "Welcome back %s!", "Nice to see you"], user_name);
+// If strings have parameters you can specify their value in the function.
+```
+
 ### Send a random message from the speech database
 
 ```js
 // Send a random `INTRO` sentence.
 sender.sendAnyTextMessage(session, 'INTRO');
-```
-
-### Send a random message from a list of sentences.
-
-```js
-sender.sendAnyTextMessage(session, ["Hello!", "Greetings!"]);
+// Or if you have parameters specified in the `json` file...
+sender.sendAnyTextMessage(session, 'INTRO', user_name);
 ```
